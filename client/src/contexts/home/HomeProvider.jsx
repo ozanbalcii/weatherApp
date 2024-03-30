@@ -8,6 +8,7 @@ export const HomeContext = createContext();
 
 export const HomeProvider = ({ children }) => {
   const [weatherDataForHomePage, setWeatherDataForHomePage] = useState([]);
+  const [locationDataForHomePage, setLocationDataForHomePage] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -31,6 +32,7 @@ const  { handleSubmit, handleChange, values, touched, errors, getFieldProps } = 
     onSubmit: async (values, { resetForm }) => {
         try {
             const results = await getAllWeatherConditions(values.searchTerm);
+            console.log(results, 'results')
             if (results && results.data && results.data.current) {
                 const currentWeatherForHomePage = {
                     temp_c: results.data.current.temp_c,
@@ -38,7 +40,14 @@ const  { handleSubmit, handleChange, values, touched, errors, getFieldProps } = 
                     icon: results.data.current.condition.icon ? results.data.current.condition.icon : null,
                     date: results.data.current.last_updated
                 };
+
+                const locationForHomePage = {
+                    country : results.data.location.country,
+                    name : results.data.location.name,
+                    localtime : results.data.location.localtime
+                }
                 setWeatherDataForHomePage(currentWeatherForHomePage);
+                setLocationDataForHomePage(locationForHomePage)
             } else {
                 console.log("The data structure is not correct");
             }
@@ -57,7 +66,7 @@ const  { handleSubmit, handleChange, values, touched, errors, getFieldProps } = 
 
   
 
-const data = {  weatherDataForHomePage, loading, error,  handleSubmit, handleChange, values, touched, getFieldProps, errors }
+const data = {  weatherDataForHomePage, locationDataForHomePage, loading, error,  handleSubmit, handleChange, values, touched, getFieldProps, errors }
   return (
     <HomeContext.Provider value={data}>
       {children}

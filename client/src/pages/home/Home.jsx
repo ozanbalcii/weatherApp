@@ -15,8 +15,10 @@ export default function Home() {
     values,
     touched,
     errors,
+    locationDataForHomePage,
   } = useContext(HomeContext);
 
+  console.log(locationDataForHomePage, " locationDataForHomePage");
   return (
     <>
       <div>
@@ -53,11 +55,12 @@ export default function Home() {
         </nav>
         {/* Content Section */}
         <div>
-          <div className="flex items-center justify-center p-5">
+          <div className="flex items-center justify-center pt-5 relative">
             <form onSubmit={handleSubmit}>
+              {/* Search section start */}
               <div className="flex items-center gap-2">
                 <div className="flex items-center justify-center gap-2 pb-5">
-                  <p className="text-center font-bold">Search for a city</p>
+                  <p className="text-center font-bold">Search</p>
                   <div className="text-black">
                     <Input
                       type={"text"}
@@ -65,11 +68,12 @@ export default function Home() {
                       className={
                         "border border-black rounded-md p-1 text-black"
                       }
-                      placeholder={"Search"}
+                      placeholder={"Search for a city"}
                       onChange={handleChange}
                       value={values.searchTerm}
                     />
                   </div>
+              
                   <div>
                     <SubmitButton
                       type={"submit"}
@@ -77,37 +81,54 @@ export default function Home() {
                       className="bg-black text-white p-1 rounded-md hover:bg-opacity-70 transition-all"
                     />
                   </div>
+                  <div>
+                  add to watchlist
+                  </div>
                 </div>
               </div>
-              {weatherDataForHomePage.icon && (
+              {/* Search section end */}
+              {/* Weather Info start */}
+             <div>
+             {weatherDataForHomePage.icon && (
                 <>
-                  <div className="bg-gray-200 border rounded-md border-black w-auto cursor-pointer">
-                  <Link to="/otherpage">
-                    <div className="flex items-center justify-center">
-                      <div>
-                        <img
-                          src={weatherDataForHomePage.icon}
-                          alt="weather icon"
-                          className="w-20 h-20"
-                        />
+                  <div className="bg-gray-200 border rounded-md border-black w-auto cursor-pointer hover:bg-opacity-40 p-2 md:w-full">
+                    <Link to="/otherpage">
+                      <div className="grid grid-cols-1 md:grid-cols-2 ">
+                        <div className="flex items-center">
+                          <div>
+                            <img
+                              src={weatherDataForHomePage.icon}
+                              alt="weather icon"
+                              className="w-20 h-20"
+                            />
+                          </div>
+                          <div className="font-bold">
+                            <p className="text-center">
+                              {locationDataForHomePage.name}
+                            </p>
+                            <p className="text-center">
+                              {locationDataForHomePage.country}
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-center">
+                            {weatherDataForHomePage.condition}
+                          </p>
+                          <p className="text-center">
+                            {weatherDataForHomePage.temp_c} °C
+                          </p>
+                          <p className="text-center">
+                            {weatherDataForHomePage.date}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-center">
-                          {weatherDataForHomePage.condition}
-                        </p>
-                        <p className="text-center">
-                          {weatherDataForHomePage.temp_c}{" "}
-                        </p>
-                        <p className="text-center">
-                          {weatherDataForHomePage.date}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-
+                    </Link>
                   </div>
                 </>
               )}
+             </div>
+              {/* Weather Info end */}
             </form>
           </div>
         </div>
