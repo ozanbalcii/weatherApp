@@ -49,7 +49,6 @@ export default function WatchList() {
 
   return (
     <>
-      <Navbar />
       <div className="min-h-screen bg-gray-800 ">
         <div className="p-4">
           <div className="max-w-md mx-auto bg-white border border-black rounded-xl overflow-hidden md:max-w-2xl">

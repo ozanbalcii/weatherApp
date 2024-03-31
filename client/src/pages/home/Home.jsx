@@ -21,7 +21,6 @@ export default function Home() {
   return (
     <>
        <div className="min-h-screen bg-gray-800 ">
-        <Navbar />
         <div className="flex items-center justify-center pt-5 relative">
           <form onSubmit={handleSubmit}>
             {/* Search section start */}
