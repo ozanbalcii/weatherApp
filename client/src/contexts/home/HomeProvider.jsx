@@ -10,6 +10,7 @@ export const HomeProvider = ({ children }) => {
   const [weatherDataForHomePage, setWeatherDataForHomePage] = useState([]);
   const [locationDataForHomePage, setLocationDataForHomePage] = useState([]);
   const [weatherData, setWeatherData] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -38,27 +39,29 @@ const  { handleSubmit, handleChange, values, touched, errors, getFieldProps } = 
                 const currentWeatherForHomePage = {
                     temp_c: results.data.current.temp_c,
                     condition: results.data.current.condition.text,
-                    icon: results.data.current.condition.icon ? results.data.current.condition.icon : null,
-                    date: results.data.current.last_updated
+                    icon: results.data.current.condition.icon,
+                    date: results.data.current.last_updated,
+                    is_day : results.data.current.is_day
                 };
                 const weatherDataDetail = {
-
                     temp_c: results.data.current.temp_c,
                     feelslike_c : results.data.current.feelslike_c,
                     pressure_in : results.data.current.pressure_in,
                     wind_degree: results.data.current.wind_degree,
                     humidity : results.data.current.humidity,
                     condition: results.data.current.condition.text,
-                    date: results.data.current.last_updated
-
-            
+                    date: results.data.current.last_updated,
+                    icon: results.data.current.condition.icon,
+                    gust_kph : results.data.current.gust_kph,
+                    is_day : results.data.current.is_day
                 };
                 setWeatherData(weatherDataDetail);
 
                 const locationForHomePage = {
                     country : results.data.location.country,
                     name : results.data.location.name,
-                    localtime : results.data.location.localtime
+                    localtime : results.data.location.localtime,
+
                 }
                 setWeatherDataForHomePage(currentWeatherForHomePage);
                 setLocationDataForHomePage(locationForHomePage)
@@ -80,7 +83,7 @@ const  { handleSubmit, handleChange, values, touched, errors, getFieldProps } = 
 
   
 
-const data = { weatherData, weatherDataForHomePage, locationDataForHomePage, loading, error,  handleSubmit, handleChange, values, touched, getFieldProps, errors }
+const data = { weatherData, weatherDataForHomePage, locationDataForHomePage, loading, error,  handleSubmit, handleChange, values, touched, getFieldProps, errors, watchlist, setWatchlist }
   return (
     <HomeContext.Provider value={data}>
       {children}

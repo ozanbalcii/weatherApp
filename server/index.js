@@ -8,8 +8,8 @@ app.use(cors());
 const db = require("./models");
 
 // Routers
-const weatherRouter = require("./routes/Weather");
-app.use("/weather", weatherRouter);
+const weatherRouter = require("./routes/WatchList");
+app.use("/watchList", weatherRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(3001, () => {
