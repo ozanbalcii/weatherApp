@@ -165,7 +165,12 @@ export default function WeatherDetail() {
                       ))}
                     </div>
                   </div>
-                  <LineChart data={data[0]} />
+              <div>
+              
+              <div className=" justify-center hidden md:flex ">
+                <LineChart data={data[0]} />
+                </div>
+              </div>
                   {/* forecast end */}
                 </div>
               </div>
