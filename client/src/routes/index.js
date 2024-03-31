@@ -4,6 +4,7 @@ import WeatherDetail from "../pages/weatherDetail/WeatherDetail";
 import WatchList from "../pages/watchList/WatchList";
 import History from "../pages/history/History";
 import Navbar from "../Components/Navbar";
+import About from "../pages/about/About";
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
         <Route path="/weatherDetail" element={<WeatherDetail />} />
         <Route path="/watchList" element={<WatchList />} />
         <Route path="/history" element={<History />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </>
   );
