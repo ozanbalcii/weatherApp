@@ -8,7 +8,6 @@ import { HomeContext } from "../../contexts/home/HomeProvider";
 
 export default function WatchList() {
   const { weatherData } = useContext(HomeContext);
-  console.log(weatherData, "zazazaza")
   const [data, setData] = useState();
   const [favData, setFavData] = useState("");
 
@@ -19,14 +18,15 @@ export default function WatchList() {
       const list = res?.data?.map((item) => ({
         id: item.id,
         name: item.name,
+        temp_c: item.temp_c,
       }));
       setData(list);
-      console.log(list, "list");
     } catch (error) {
       console.log(error, "error");
     }
   };
 
+console.log(data, "datadatadatadata")
   const fetchWeather = async () => {
     try {
       console.log("favData:", favData);
@@ -38,14 +38,14 @@ export default function WatchList() {
     }
   };
 
-  // const fetchHistoryValues = async () => {
-  //   try {
-  //     const results = await saveHistoryValues(data?.map((item) => item.name));
-  //     console.log(results, "resultttt");
-  //   } catch (error) {
-  //     console.log(error, "error");
-  //   }
-  // };
+ const fetchHistoryValues = async () => {
+   try {
+     const results = await saveHistoryValues();
+     console.log(results, "history");
+   } catch (error) {
+     console.log(error, "error");
+   }
+ };
 
 
   const handleItemClick = (itemName) => {
@@ -55,7 +55,7 @@ export default function WatchList() {
   useEffect(() => {
     fetchWatchList();
     fetchWeather();
-    // fetchHistoryValues()
+     fetchHistoryValues()
   }, []);
 
   return (
@@ -65,7 +65,7 @@ export default function WatchList() {
         <div className="bg-gray-100 p-4">
           <div className="max-w-md mx-auto bg-white border border-black rounded-xl overflow-hidden md:max-w-2xl">
             <div className="p-4 font-bold text-[22px]">
-              Watch List & History{" "}
+              Watch List & Record{" "}
             </div>
             <div className="md:flex">
               <div className="pl-5">
@@ -82,7 +82,7 @@ export default function WatchList() {
                     - {item.name}:  
                     </div>
                       <div className="font-medium">
-                      {`Temperature of the previous day: ${weatherData.temp_c}°C`}
+                      {`Temperature of the previous day: ${item.temp_c}°C`}
                       </div>
                   </div>
 

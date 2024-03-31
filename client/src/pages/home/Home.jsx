@@ -13,6 +13,9 @@ export default function Home() {
     handleChange,
     values,
     locationDataForHomePage,
+    touched,
+    errors,
+    getFieldProps,
   } = useContext(HomeContext);
 
   return (
@@ -22,24 +25,31 @@ export default function Home() {
         <div className="flex items-center justify-center pt-5 relative">
           <form onSubmit={handleSubmit}>
             {/* Search section start */}
-            <div className="flex items-center gap-2 justify-center pb-5">
-              <p className="text-center font-bold">Search</p>
-              <div className="text-black">
-                <Input
-                  type={"text"}
-                  name={"searchTerm"}
-                  className={"border border-black rounded-md p-1 text-black"}
-                  placeholder={"Search for a city"}
-                  onChange={handleChange}
-                  value={values.searchTerm}
-                />
+            <div>
+              <div className="flex items-center gap-2 justify-center ">
+                <p className="text-center font-bold">Search</p>
+                <div className="text-black">
+                  <Input
+                    type="text"
+                    name="searchTerm"
+                    className="border border-black rounded-md p-1 text-black "
+                    placeholder="Search for a city"
+                    onChange={handleChange}
+                    value={values.searchTerm}
+                  />
+                </div>
+                <div>
+                  <SubmitButton
+                    type="submit"
+                    text={<FaSearch />}
+                    className="bg-black text-white p-2 rounded-md hover:bg-opacity-70 transition-all"
+                  />
+                </div>
               </div>
-              <div>
-                <SubmitButton
-                  type={"submit"}
-                  text={(<FaSearch />)}
-                  className="bg-black text-white p-2 rounded-md hover:bg-opacity-70 transition-all"
-                />
+              <div className="text-center text-[19px] ">
+                {errors.searchTerm && (
+                  <p className="text-red-500">{errors.searchTerm}</p>
+                )}
               </div>
             </div>
             {/* Search section end */}
@@ -52,7 +62,7 @@ export default function Home() {
                       weatherDataForHomePage.is_day == "1"
                         ? "bg-yellow-200"
                         : "bg-gray-200"
-                    }  border rounded-md border-black w-auto cursor-pointer hover:bg-opacity-40 p-2 md:w-full`}
+                    }  border rounded-md border-black w-auto cursor-pointer hover:bg-opacity-40 mt-5 p-2 md:w-full`}
                   >
                     <Link to="/weatherDetail">
                       <div className="grid grid-cols-2 md:grid-cols-2 ">

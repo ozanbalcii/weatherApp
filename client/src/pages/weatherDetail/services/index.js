@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseURL = "http://localhost:3001";
-
 const baseURL_2 = "https://api.weatherapi.com/v1";
 
 export const saveWatchList = async (name, temp_c) => {
@@ -19,7 +18,7 @@ export const saveWatchList = async (name, temp_c) => {
 
  export const saveHistoryValues = async (searchTerm) => {
    try {
-     const response = await axios.get(`${baseURL}/history.json?key=fe19d13f36714917acf140712242903&q=${searchTerm}&dt=2024-01-01&end_dt=2024-01-02`, {
+     const response = await axios.get(`${baseURL_2}/history.json?key=fe19d13f36714917acf140712242903&q=${searchTerm}&dt=2024-01-01&end_dt=2024-01-02`, {
        
      });
      return { success: true, data: response.data };

@@ -144,7 +144,7 @@ export default function WeatherDetail() {
                               <div className="font-bold">
                                 <p className="text-sm md:text-base lg:text-lg">
                                   {" "}
-                                  Estimated average temperature:{" "}
+                                  Estimated average daily temperature:{" "}
                                   {item.avgtemp_c}°C
                                 </p>
                               </div>

@@ -1,5 +1,5 @@
-import React, { useEffect, createContext, useContext, useState } from "react";
-import { format } from "date-fns";
+import React, { createContext, useState } from "react";
+// import { format } from "date-fns";
 import { forecast, getAllWeatherConditions } from "../../services";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -21,8 +21,14 @@ export const HomeProvider = ({ children }) => {
         searchTerm: "",
       },
       validationSchema: Yup.object({
-        searchTerm: Yup.string().required("Required"),
+        searchTerm: Yup.string()
+          .required("Lütfen bir şehir adı giriniz")
+          .trim()
+          .matches(/^[a-zA-ZığüşöçİĞÜŞÖÇ\s]*$/, "Only letters and spaces are allowed")
+          .min(2, "Search term must be at least 2 characters long"),
       }),
+      
+      
       onSubmit: async (values, { resetForm }) => {
         try {
           const results = await getAllWeatherConditions(values.searchTerm);

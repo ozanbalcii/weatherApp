@@ -25,4 +25,11 @@ router.post("/", async (req, res) => {
   }
 });
 
+// router.delete('/', async(req,res) => {
+//   const weatherId = req.params.weatherId;
+//   await WatchList.destroy({where: {id: weatherId}});
+//   res.json("Weather deleted");
+// })
+
+
 module.exports = router;
