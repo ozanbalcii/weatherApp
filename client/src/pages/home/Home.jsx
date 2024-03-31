@@ -3,7 +3,6 @@ import Input from "../../Components/Input";
 import { Link } from "react-router-dom";
 import { HomeContext } from "../../contexts/home/HomeProvider";
 import SubmitButton from "../../Components/Button/SubmitButton";
-import Navbar from "../../Components/Navbar";
 import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
@@ -13,9 +12,7 @@ export default function Home() {
     handleChange,
     values,
     locationDataForHomePage,
-    touched,
     errors,
-    getFieldProps,
   } = useContext(HomeContext);
 
   return (

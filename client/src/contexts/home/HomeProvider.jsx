@@ -32,7 +32,6 @@ export const HomeProvider = ({ children }) => {
       onSubmit: async (values, { resetForm }) => {
         try {
           const results = await getAllWeatherConditions(values.searchTerm);
-          console.log(results, "results");
           if (results && results.data && results.data.current) {
             const currentWeatherForHomePage = {
               temp_c: results.data.current.temp_c,

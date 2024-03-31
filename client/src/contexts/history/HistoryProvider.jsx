@@ -26,25 +26,27 @@ export const HistoryProvider = ({ children }) => {
       onSubmit: async (values, { resetForm }) => {
         try {
           const results = await saveHistoryValues(values.searchTerm);
-          console.log(results, "results");
-          if (results && results.data && results.data.current) {
             const historyData = {
-              temp_c: results.data.current.temp_c,
-              condition: results.data.current.condition.text,
-              icon: results.data.current.condition.icon,
-              date: results.data.current.last_updated,
-              is_day: results.data.current.is_day,
+            location: results.data.location.name,
+             date1: results.data.forecast.forecastday[0].date,
+             date2: results.data.forecast.forecastday[1].date,
+             condition1 : results.data.forecast.forecastday[0].day.condition.text,
+             condition2 : results.data.forecast.forecastday[1].day.condition.text,
+             icon1 : results.data.forecast.forecastday[0].day.condition.icon,
+             icon2 : results.data.forecast.forecastday[1].day.condition.icon,
+             maxtemp_c1 : results.data.forecast.forecastday[0].day.maxtemp_c,
+             maxtemp_c2 : results.data.forecast.forecastday[1].day.maxtemp_c,
+
             };
             setHistoryValue(historyData);
-          } else {
-            console.log("The data structure is not correct");
-          }
+         
           resetForm();
         } catch (error) {
           console.log(error, "error");
         }
       },
     });
+   
   const data = {
     handleSubmit,
     handleChange,
