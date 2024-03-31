@@ -97,16 +97,25 @@ export default function WeatherDetail() {
                         className="bg-black text-white p-1 rounded-md hover:bg-opacity-70 transition-all"
                       />
                     </div>
-                    <div className="border-t border-black">
-                      <div className="font-bold pt-4 ">Forecast</div>
+                    {/* forecast start */}
+                    <div className="border-t border-black pb-3">
+                      <div className="font-bold pt-4 text-xl md:text- text-center xl lg:text-3xl pb-2">
+                        Forecast
+                      </div>
                       <div>
                         {forecastValue.map((item) => (
                           <div key={item.sunrise}>
                             <div className="">
                               <div className="flex items-center justify-center gap-4">
                                 <div>
-                                  <p> Sunrise: {item.sunrise}</p>
-                                  <p> Sunset: {item.sunset}</p>
+                                  <p className="text-sm md:text-base lg:text-lg">
+                                    {" "}
+                                    Sunrise: {item.sunrise}
+                                  </p>
+                                  <p className="text-sm md:text-base lg:text-lg">
+                                    {" "}
+                                    Sunset: {item.sunset}
+                                  </p>
                                 </div>
                                 <div className="flex items-center justify-center">
                                   <div className="md:flex hidden">
@@ -117,21 +126,41 @@ export default function WeatherDetail() {
                                     />
                                   </div>
                                   <div>
-                                    <p>{item.condition} weather later</p> 
-                                    today
+                                    <p className="text-sm md:text-base lg:text-lg">
+                                      {item.condition} weather later
+                                    </p>
+                                    <p className="text-sm md:text-base lg:text-lg">
+                                      today
+                                    </p>
                                   </div>
                                 </div>
                               </div>
                               <div className="flex items-center justify-center gap-4">
                                 <div className="font-bold">
-                                <p>   Estimated average temperature: {item.avgtemp_c}°C</p>
+                                  <p className="text-sm md:text-base lg:text-lg">
+                                    {" "}
+                                    Estimated average temperature:{" "}
+                                    {item.avgtemp_c}°C
+                                  </p>
                                 </div>
+                             
                               </div>
+                              <div className="text-center">
+                                  <div className="font-bold pt-5">
+                                    Suggestion:
+                                  </div>
+                                  <div className="font-semibold">
+                                   {item.avgtemp_c > 20 ? "It's a hot day, wear light clothes." : "It's a cold day, wear warm clothes."}
+                                   {item.condition === "Sunny" ? "Don't forget to wear sunglasses." : "Don't forget to take an umbrella."}
+                                  </div>
+                                </div>
                             </div>
                           </div>
                         ))}
                       </div>
                     </div>
+
+                    {/* forecast end */}
                   </div>
                 </>
               </div>

@@ -70,6 +70,7 @@ export const HomeProvider = ({ children }) => {
                   sunrise: item.astro.sunrise,
                   sunset: item.astro.sunset,
                   hour: item.hour,
+                  temp_c: item.hour.map((item) => item.temp_c),
                   avgtemp_c: item.day.avgtemp_c,
                   condition: item.day.condition.text,
                   icon: item.day.condition.icon,
