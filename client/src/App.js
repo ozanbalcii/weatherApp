@@ -1,10 +1,12 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import AppRoutes from './routes';
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes";
+// import Navbar from "./Components/Navbar";
 
 function App() {
   return (
     <Router>
       <div className="App">
+        {/* <Navbar /> */}
         <AppRoutes />
       </div>
     </Router>

@@ -9,6 +9,7 @@ export const HomeContext = createContext();
 export const HomeProvider = ({ children }) => {
   const [weatherDataForHomePage, setWeatherDataForHomePage] = useState([]);
   const [locationDataForHomePage, setLocationDataForHomePage] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -40,6 +41,19 @@ const  { handleSubmit, handleChange, values, touched, errors, getFieldProps } = 
                     icon: results.data.current.condition.icon ? results.data.current.condition.icon : null,
                     date: results.data.current.last_updated
                 };
+                const weatherDataDetail = {
+
+                    temp_c: results.data.current.temp_c,
+                    feelslike_c : results.data.current.feelslike_c,
+                    pressure_in : results.data.current.pressure_in,
+                    wind_degree: results.data.current.wind_degree,
+                    humidity : results.data.current.humidity,
+                    condition: results.data.current.condition.text,
+                    date: results.data.current.last_updated
+
+            
+                };
+                setWeatherData(weatherDataDetail);
 
                 const locationForHomePage = {
                     country : results.data.location.country,
@@ -66,7 +80,7 @@ const  { handleSubmit, handleChange, values, touched, errors, getFieldProps } = 
 
   
 
-const data = {  weatherDataForHomePage, locationDataForHomePage, loading, error,  handleSubmit, handleChange, values, touched, getFieldProps, errors }
+const data = { weatherData, weatherDataForHomePage, locationDataForHomePage, loading, error,  handleSubmit, handleChange, values, touched, getFieldProps, errors }
   return (
     <HomeContext.Provider value={data}>
       {children}
