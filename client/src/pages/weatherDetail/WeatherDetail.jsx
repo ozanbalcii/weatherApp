@@ -46,7 +46,6 @@ export default function WeatherDetail() {
   return (
     <>
        <div className="min-h-screen bg-gray-800 ">
-        <Navbar />
         {weatherData.icon ? (
           <>
             <div className="flex items-center justify-center pt-5 relative">

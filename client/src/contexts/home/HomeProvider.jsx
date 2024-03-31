@@ -94,10 +94,6 @@ export const HomeProvider = ({ children }) => {
       },
     });
 
-  //   useEffect(() => {
-  //     fetchWeather();
-  //   }, []);
-
   const data = {
     weatherData,
     weatherDataForHomePage,

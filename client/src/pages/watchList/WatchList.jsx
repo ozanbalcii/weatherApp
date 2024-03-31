@@ -1,5 +1,4 @@
 import React, {useEffect, useState } from "react";
-import Navbar from "../../Components/Navbar";
 import { getWatchLists, saveHistoryValues } from "../weatherDetail/services";
 import { getAllWeatherConditions } from "../../services";
 
@@ -30,21 +29,11 @@ export default function WatchList() {
     }
   };
 
-  const fetchHistoryValues = async () => {
-    try {
-      const results = await saveHistoryValues('London');
-      console.log(results, "history");
-    } catch (error) {
-      console.log(error, "error");
-    }
-  };
-
 
 
   useEffect(() => {
     fetchWatchList();
     fetchWeather();
-    fetchHistoryValues();
   }, []);
 
   return (
