@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
-import { HomeContext } from "../../contexts/home/HomeProvider";
-import { useContext } from "react";
-
-export default function Navbar({ goToHomePage}) {
-  const { weatherData } = useContext(HomeContext);
+export default function Navbar() {
   return (
     <nav className="bg-[#10151d]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,20 +11,20 @@ export default function Navbar({ goToHomePage}) {
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-2">
                 {/* {weatherData.icon && ( */}
-                  <>
-                    <Link
-                      to="/"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      to="/watchList"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                     Favorites
-                    </Link>
-                  </>
+                <>
+                  <Link
+                    to="/"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/watchList"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Watch List & History
+                  </Link>
+                </>
                 {/* )} */}
               </div>
             </div>

@@ -58,7 +58,6 @@ export const HomeProvider = ({ children }) => {
             setLocationDataForHomePage(locationForHomePage);
 
             const forecastData = await forecast(values.searchTerm);
-            console.log(forecastData, "forecastData");
             if (
               forecastData &&
               forecastData.data &&

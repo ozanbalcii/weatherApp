@@ -28,7 +28,6 @@ const LineChart = ({ data }) => {
         }
       });
     }
-
     //* Cleanup
     return () => {
       if (chartInstance.current) {

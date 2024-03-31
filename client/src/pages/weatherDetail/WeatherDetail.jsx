@@ -14,9 +14,11 @@ export default function WeatherDetail() {
     values: [item.temp_c],
   }));
 
+  console.log(weatherData.temp_c, "weatherData");
+
   const handleWatchList = async () => {
     try {
-      const res = await saveWatchList(locationDataForHomePage.name);
+      const res = await saveWatchList((locationDataForHomePage.name), weatherData.temp_c );
       if (res.success) {
         Swal.fire({
           position: "center",

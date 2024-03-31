@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { HomeContext } from "../../contexts/home/HomeProvider";
 import SubmitButton from "../../Components/Button/SubmitButton";
 import Navbar from "../../Components/Navbar";
+import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
   const {
@@ -36,8 +37,8 @@ export default function Home() {
               <div>
                 <SubmitButton
                   type={"submit"}
-                  text={"Search"}
-                  className="bg-black text-white p-1 rounded-md hover:bg-opacity-70 transition-all"
+                  text={(<FaSearch />)}
+                  className="bg-black text-white p-2 rounded-md hover:bg-opacity-70 transition-all"
                 />
               </div>
             </div>
