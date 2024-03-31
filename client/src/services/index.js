@@ -13,3 +13,14 @@ export const getAllWeatherConditions = async (searchTerm) => {
     }
   };
   
+
+export const forecast = async (searchTerm) => {
+    try {
+      const response = await axios.get(`${baseURL}/forecast.json?key=fe19d13f36714917acf140712242903&q=${searchTerm}`, {
+      });
+      return { success: true, data: response.data };
+    } catch (error) {
+      return { success: false, data: error.response.data };
+    }
+  };
+  

@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Input from "../../Components/Input";
 import { Link } from "react-router-dom";
 import { HomeContext } from "../../contexts/home/HomeProvider";
 import SubmitButton from "../../Components/Button/SubmitButton";
 import Navbar from "../../Components/Navbar";
-import Button from "../../Components/Button/index";
 
 export default function Home() {
   const {
@@ -14,7 +13,6 @@ export default function Home() {
     values,
     locationDataForHomePage,
   } = useContext(HomeContext);
-
 
   return (
     <>

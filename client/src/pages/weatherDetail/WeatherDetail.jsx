@@ -1,23 +1,44 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "../../Components/Navbar";
 import { HomeContext } from "../../contexts/home/HomeProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import Button from "../../Components/Button/index";
+import { saveWatchList } from "./services";
 
 export default function WeatherDetail() {
-  const { weatherData, locationDataForHomePage } = useContext(HomeContext);
-  const [watchlist, setWatchlist] = useState([]);
+  const { weatherData, locationDataForHomePage, forecastValue } =
+    useContext(HomeContext);
 
-  console.log(weatherData, " kkkk");
-  console.log(locationDataForHomePage, " locationDataForHomePage");
-
-  console.log(watchlist, 'watchlistwatchlistwatchlistwatchlist')
-
-
-  const addToWatchlist = () => {
-    setWatchlist(prevWatchlist => [...prevWatchlist, locationDataForHomePage.name]);
+  console.log(forecastValue, "forecastValue");
+  const handleWatchList = async () => {
+    try {
+      const res = await saveWatchList(locationDataForHomePage.name);
+      if (res.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: res?.data?.message ?? "Successfully!",
+          showConfirmButton: false,
+          timer: 5000,
+        });
+        setTimeout(() => {
+          window.location.href = `/watchList`;
+        }, 3000);
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: res?.data?.message ?? "Already on the watch list!",
+          showConfirmButton: false,
+          showCancelButton: true,
+          cancelButtonText: "Close",
+        });
+      }
+    } catch (error) {
+      console.log(error, "error");
+    }
   };
-
   return (
     <>
       <div>
@@ -69,17 +90,51 @@ export default function WeatherDetail() {
                         </div>
                       </div>
                     </div>
-                    <div>
-                    <Button
-                  onClick={addToWatchlist}
-                  text={"Add to watchlist"}
-                  className="bg-black text-white p-1 rounded-md hover:bg-opacity-70 transition-all"
-                />
+                    <div className="flex items-center justify-end pb-2">
+                      <Button
+                        onClick={handleWatchList}
+                        text={"Add to watchlist"}
+                        className="bg-black text-white p-1 rounded-md hover:bg-opacity-70 transition-all"
+                      />
+                    </div>
+                    <div className="border-t border-black">
+                      <div className="font-bold pt-4 ">Forecast</div>
+                      <div>
+                        {forecastValue.map((item) => (
+                          <div key={item.sunrise}>
+                            <div className="">
+                              <div className="flex items-center justify-center gap-4">
+                                <div>
+                                  <p> Sunrise: {item.sunrise}</p>
+                                  <p> Sunset: {item.sunset}</p>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                  <div className="md:flex hidden">
+                                    <img
+                                      src={item.icon}
+                                      alt="weather icon"
+                                      className="w-20 h-20"
+                                    />
+                                  </div>
+                                  <div>
+                                    <p>{item.condition} weather later</p> 
+                                    today
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-center gap-4">
+                                <div className="font-bold">
+                                <p>   Estimated average temperature: {item.avgtemp_c}°C</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </>
               </div>
-              
             </div>
           </>
         ) : (
@@ -96,7 +151,6 @@ export default function WeatherDetail() {
                 page first.
               </p>
             </div>
-            
           </>
         )}
       </div>
