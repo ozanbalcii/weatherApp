@@ -20,14 +20,14 @@ export default function Home() {
 
   return (
     <>
-      <div>
+       <div className="min-h-screen bg-gray-800 ">
         <Navbar />
         <div className="flex items-center justify-center pt-5 relative">
           <form onSubmit={handleSubmit}>
             {/* Search section start */}
             <div>
               <div className="flex items-center gap-2 justify-center ">
-                <p className="text-center font-bold">Search</p>
+                <p className="text-center font-bold text-white">Search</p>
                 <div className="text-black">
                   <Input
                     type="text"

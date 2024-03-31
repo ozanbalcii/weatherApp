@@ -22,7 +22,7 @@ export const HomeProvider = ({ children }) => {
       },
       validationSchema: Yup.object({
         searchTerm: Yup.string()
-          .required("Lütfen bir şehir adı giriniz")
+          .required("Please enter a city name")
           .trim()
           .matches(/^[a-zA-ZığüşöçİĞÜŞÖÇ\s]*$/, "Only letters and spaces are allowed")
           .min(2, "Search term must be at least 2 characters long"),

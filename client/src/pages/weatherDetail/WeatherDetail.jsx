@@ -14,8 +14,6 @@ export default function WeatherDetail() {
     values: [item.temp_c],
   }));
 
-  console.log(weatherData.temp_c, "weatherData");
-
   const handleWatchList = async () => {
     try {
       const res = await saveWatchList((locationDataForHomePage.name), weatherData.temp_c );
@@ -47,7 +45,7 @@ export default function WeatherDetail() {
 
   return (
     <>
-      <div>
+       <div className="min-h-screen bg-gray-800 ">
         <Navbar />
         {weatherData.icon ? (
           <>
@@ -180,7 +178,7 @@ export default function WeatherDetail() {
           </>
         ) : (
           <>
-            <div className="flex justify-center pt-4 font-bold text-[25px]">
+            <div className="flex justify-center pt-4 font-bold text-[25px] text-white">
               <p>
                 Please search for the city from the{" "}
                 <button
